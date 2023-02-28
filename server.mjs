@@ -1,4 +1,5 @@
 import express from "express";
+import jokeRoute from "./routes/joke.mjs";
 import router from "./routes/random.mjs";
 import translateDocument from "./routes/translation.mjs";
 
@@ -15,6 +16,7 @@ function initServer() {
 
   server.use("/api/random", router);
   server.use("/translate", translateDocument);
+  server.use("/joke", jokeRoute);
 
   server.listen(server.get("port"), function () {
     console.log("server running", server.get("port"));

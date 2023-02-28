@@ -1,7 +1,9 @@
-import 
+import saveSettings, {saveSettingsBtn} from "./modules/settings.mjs";
 
-function App() {
-    
+const app = function() {
+    saveSettingsBtn.addEventListener("click", saveSettings);
 }
 
-export default App;
+app();
+
+export default app;

@@ -9,6 +9,19 @@
   <body>
 
     <h1 data-language-key="app-title">DoReal</h1>
+    <img src="#" alt="yessir" data-language-key="yessir" />
+
+    <h2>Joke</h2>
+    <p id="jokeBody" data-language-key="">Default</p>
+
+    <form id="languageSelection">
+      <label for="selectLanguage" data-language-key="selectLanguage">Select language:</label>
+      <br>
+      <input type="radio" name="selectLanguage" value="NO_NB" data-language-key="norwegian">Norwegian</input>
+      <input type="radio" name="selectLanguage" value="EN_UK" data-language-key="english">English</input>
+      <br>
+      <input type="button" value="Submit" id="saveSettingsBtn">
+    </form>
 
   </body>
   <script src="app.mjs" type="module"></script>
