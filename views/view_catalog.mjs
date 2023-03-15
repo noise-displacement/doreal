@@ -5,6 +5,7 @@ const VIEWS = {
   user: { file: "users" },
   userList: { file: "users" },
   dashboard: { file: "dashboard" },
+  landing: { file: "landing" },
 };
 
 export default VIEWS;

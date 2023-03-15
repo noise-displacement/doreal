@@ -1,12 +1,19 @@
 import express from "express";
-//import User from "../models/user.mjs";
+import User from "../models/user.mjs";
 import bcrypt from "bcrypt";
 import UserSchema from "../models/user.mjs";
 import VIEWS from "../views/view_catalog.mjs";
+import StorageManager from "../StorageManager.mjs";
 
-const { createHmac } = await import('node:crypto');
+const crypto = await import('node:crypto');
 
 const userRouter = express.Router();
+const secret = process.env["CRYPTO_SECRET"] || "SECRET";
+const salt = process.env["CRYPTO_SALT"] || "SALT";
+
+const algorithm = 'aes-256-ctr';
+const iv = crypto.randomBytes(16);
+
 
 //get all users
 userRouter.get("/", async (req, res, next) => {
@@ -16,28 +23,33 @@ userRouter.get("/", async (req, res, next) => {
 });
 
 //get Login
-userRouter.get("/login", (req, res, next) => {
+userRouter.get("/login", async (req, res, next) => {
+  console.log(req.session);
   res.render(VIEWS.login.file);
 });
 
 userRouter.post("/login", async (req, res, next) => {
-  const user = await UserSchema.find({ email: req.body.email });
+  const email = req.body.email;
+  const password = req.body.password;
 
-  console.log(user);
-
-  try {
-    if (user == null || user == undefined) {
-      return res.send("No user found");
-    } else if (await bcrypt.compare(req.body.password, user[0].password)) {
-      res.json(user);
-    } else {
-      res.send("Not allowed");
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).send();
-  }
+  const user = await new StorageManager().retrieveUser(email, password);
+  req.session.user = user;
+  //console.log(user);
+  console.log(req.session);
 });
+
+userRouter.get("/logout", (req, res, next) => {
+  res.render(VIEWS.index.file);
+})
+
+userRouter.post("/logout", (req, res, next) => {
+  console.log("logout");
+  if(req.cookies.loggedInCookie) {
+    res.clearCookie("loggedInCookie");
+  }
+
+  next();
+})
 
 userRouter.get("/register", (req, res, next) => {
   res.render(VIEWS.register.file);
@@ -45,37 +57,16 @@ userRouter.get("/register", (req, res, next) => {
 
 //post register
 userRouter.post("/register", async (req, res, next) => {
-  try {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+  const email = req.body.email;
+  const username = req.body.username;
+  const password = req.body.password;
 
-    const user = new UserSchema({
-      username: req.body.username,
-      email: req.body.email,
-      password: hashedPassword,
-    });
-
-    const newUser = await user.save();
-    // res.status(201).render(VIEWS.login.file, { accountCreated: true });
-    res.json(newUser).end();
-  } catch (err) {
-    res.status(400).json({ message: err });
-  }
+  await new StorageManager().createUser(email, username, password);
 });
 
 userRouter.get("/onRegisterComplete", (req, res, next) => {
-  res.status(201).render(VIEWS.login.file, { accountCreated: true });
-  next();
+  res.render(VIEWS.dashboard.file);
 });
 
-//get specific user
-userRouter
-  .route("/:id")
-  .get(async (req, res, next) => {
-    res.render(VIEWS.user.file, {
-      username: await UserSchema.find({ id: req.params.id }).username,
-    });
-  })
-  .patch(() => {})
-  .delete(() => {});
-
 export default userRouter;
+

@@ -1,5 +1,10 @@
 <main>
-  <h1>Dashboard</h1>
+  <h1>Hello {{user.username}}</h1>
+    <div class="uploadPostContainer">
+        <label for="postText">Text</label>
+        <input type="text" name="postText" required>
+        <button type="submit" class="submitButton" data-post-url="/post/upload">Upload post</button>
+    </div>
 
   <div class="postContainer">
     {{#each posts}}
@@ -9,6 +14,7 @@
       </div>
     {{/each}}
 
-    <span>End of posts</span>
+    <span>End of posts</span><br>
+    <button id="logoutBtn" data-post-url="/users/logout" data-btn-action="logout">Log out</button>
   </div>
 </main>
