@@ -4,8 +4,9 @@ import StorageManager from "../StorageManager.mjs";
 
 const postRouter = express.Router();
 
-postRouter.get("/", (req, res, next) => {
-    res.render(VIEWS.dashboard.file);
+postRouter.get("/", async (req, res, next) => {
+    const posts = await new StorageManager().retrievePosts({});
+    res.json(posts);
 });
 
 postRouter.post("/upload", async (req, res, next) => {

@@ -1,12 +1,20 @@
-## DoReal
+# DoReal
 
-Do the prompt idiot.
-
+BeReal clone that gives users a prompt that they have to do.
 
 ## API:
 
-POST: /users/register
-Creates new user
-{email: String, username: String, password: String}
+### Users
 
-GET: /post
+|  HTTP |  URL |  Options | Description |
+| ------------ | ------------ | ------------ | ------------ |
+| POST  |  /users/login |  email: String <br /> password: String | Posts login information
+| POST  |  /users/register |  email: String <br /> username: String <br /> password: String | Creates new user
+
+### Post
+
+|  HTTP |  URL |  Options | Description |
+| ------------ | ------------ | ------------ | ------------ |
+| GET  |  /post/ |   | Gets all posts
+| POST  |  /post/upload |  text: String | Creates new post
+| POST  |  /post/delete |  id: Number | Deletes post based on id
