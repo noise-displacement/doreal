@@ -2,7 +2,7 @@ import mongoose, { model } from "mongoose";
 
 const postSchema = mongoose.Schema({
     user: {
-        type: Object,
+        type: String,
         required: true
     },
 

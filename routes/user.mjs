@@ -24,7 +24,6 @@ userRouter.get("/", async (req, res, next) => {
 
 //get Login
 userRouter.get("/login", async (req, res, next) => {
-  console.log(req.session);
   res.render(VIEWS.login.file);
 });
 
@@ -33,9 +32,13 @@ userRouter.post("/login", async (req, res, next) => {
   const password = req.body.password;
 
   const user = await new StorageManager().retrieveUser(email, password);
-  req.session.user = user;
   //console.log(user);
-  console.log(req.session);
+  //req.session.user = user;
+  //console.log("Login route: ", req.session.user);
+
+  // Mega dum løsning, men proof of concept for å komme videre i utvikling. Fikk ikke sessions til å fungere. Tenker JWT kanskje er best?
+  res.cookie("loggedInCookie", user.username);
+  next();
 });
 
 userRouter.get("/logout", (req, res, next) => {

@@ -92,6 +92,20 @@ class StorageManager {
 
         return results;
     }
+
+    async retrievePosts(user) {
+        let results = null;
+
+        try {
+            const posts = await PostSchema.find({});
+            results = posts;
+        } catch(err) {
+            console.log(err);
+            results = err;
+        }
+
+        return results;
+    }
 }
 
 export default StorageManager;

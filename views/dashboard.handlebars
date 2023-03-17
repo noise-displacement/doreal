@@ -1,17 +1,19 @@
 <main>
-  <h1>Hello {{user.username}}</h1>
+  <h1>Hello {{user}}</h1>
     <div class="uploadPostContainer">
         <label for="postText">Text</label>
         <input type="text" name="postText" required>
-        <button type="submit" class="submitButton" data-post-url="/post/upload">Upload post</button>
+        <button type="submit" class="submitButton" data-post-url="/post/upload" data-btn-action="sendPost">Upload post</button>
     </div>
 
   <div class="postContainer">
     {{#each posts}}
+      {{#each this}}
       <div class="post">
-        <h2>{{name}}</h2>
-        <span>{{description}}</span>
+        <h2>{{user}}</h2>
+        <span>{{text}}</span>
       </div>
+      {{/each}}
     {{/each}}
 
     <span>End of posts</span><br>

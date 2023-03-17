@@ -54,6 +54,8 @@ function activateButtons() {
         logout(postUrl);
       } else if(actionValue === "register") {
         register(postUrl, data);
+      } else if(actionValue === "sendPost") {
+        sendPost(postUrl, data);
       }
     });
   });
@@ -71,6 +73,11 @@ function register(btnPostUrl, data) {
   postData(btnPostUrl, data, loadView("/users/onRegisterComplete"));
 }
 
+function sendPost(btnPostUrl, data) {
+  console.log("button clicked");
+  postData(btnPostUrl, data, loadView("/"));
+}
+
 async function postData(url = "", data = {}, callback) {
   const response = await fetch(url, {
     method: "POST",
@@ -79,7 +86,7 @@ async function postData(url = "", data = {}, callback) {
   });
 
   if (response.status === 200) {
-    callback;
+      callback;
   } else {
     console.log(response.status);
   }
