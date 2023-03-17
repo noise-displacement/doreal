@@ -64,7 +64,9 @@ userRouter.post("/register", async (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  res.cookie('loggedInCookie', false);
   await new StorageManager().createUser(email, username, password);
+  res.cookie("loggedInCookie", username);
 });
 
 userRouter.get("/onRegisterComplete", (req, res, next) => {

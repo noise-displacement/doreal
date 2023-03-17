@@ -4,13 +4,14 @@ import mongoose from "mongoose";
 //import usersRouter from "./routes/user.mjs";
 import userRouter from "./routes/user.mjs";
 import { engine } from "express-handlebars";
-import dashboardRouter from "./routes/dashboard.mjs";
+import dashboardRouter, { loadDashboard } from "./routes/dashboard.mjs";
 import VIEWS from "./views/view_catalog.mjs";
 import cookieParser from "cookie-parser";
 import session from "express-session";
 import { randomUUID } from 'crypto'
 import postRouter from "./routes/post.mjs";
 import StorageManager from "./StorageManager.mjs";
+import PostSchema from "./models/post.mjs";
 
 if (process.env.NODE_ENV !== "production") {
   dotenv.config();
@@ -64,15 +65,8 @@ middleWare.use((req, res, next) => {
 // );
 
 app.get("/", middleWare, async (req, res, next) => {
-
-  if(req.cookies.loggedInCookie === "false" || req.cookies.loggedInCookie === undefined) {
-    res.render(VIEWS.landing.file);
-  } else if(req.cookies.loggedInCookie !== undefined) {
-    const posts = await new StorageManager().retrievePosts();
-    res.render(VIEWS.dashboard.file, {user: req.cookies.loggedInCookie, posts: posts})
-  } else {
-    res.render(VIEWS.landing.file);
-  }
+  //let posts = await PostSchema.deleteMany({});
+  loadDashboard(req, res, next);
 });
 
 app.use("/post", middleWare, postRouter);

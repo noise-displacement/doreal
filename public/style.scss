@@ -1,0 +1,132 @@
+$padding: 15px;
+
+$mainColor: #111;
+$offsetColor: #eee;
+$accent: lighten(blue, 20%);
+
+$br: calc($padding / 2);
+
+body {
+    margin: 0;
+    background: $mainColor;
+    color: $offsetColor;
+    font-family: sans-serif;
+}
+
+a {
+    color: $offsetColor;
+}
+
+.bodyWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 $padding;
+
+    .bodyContainer {
+        max-width: 700px;
+        width: 100%;
+        box-sizing: border-box;
+
+        .contentContainer {
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: .7em 1.4em;
+            border-radius: $br;
+            border: 0;
+            cursor: pointer;
+            background: $accent;
+            color: $offsetColor;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        input {
+            padding: .7em 1.4em;
+            border-radius: $br;
+            border: 0;
+        }
+
+        .sidePadding {
+            padding: 0 $padding;
+        }
+
+        .topPadding {
+            padding-top: $padding;
+        }
+
+        .bg {
+            background: lighten($mainColor, 10%);
+            border-radius: $br;
+            padding: $padding;
+        }
+
+        .form {
+            .inputContainer:not(:last-child) {
+                margin-bottom: $padding;
+            }
+        }
+    }
+}
+
+nav {
+    display: flex;
+    background: lighten($mainColor, 10%);
+    padding: calc($padding / 2);
+    border-radius: 0 0 $br $br;
+
+    a {
+        padding: $padding;
+        border-radius: $br;
+        text-decoration: none;
+    }
+
+    a:hover {
+        background: lighten($mainColor, 20%);
+    }
+}
+
+main {
+    width: 100%;
+
+    .welcomeMessage {
+        border-radius: $br;
+    }
+
+    .uploadPostContainer {
+        padding: 0 $padding;
+    }
+
+    .postContainer {
+        .post {
+            padding: $padding;
+            border-radius: $br;
+            padding: $padding;
+            background: lighten($mainColor, 10%);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            span:first-child {
+                display: block;
+            }
+        }
+
+        .post:first-child {
+            margin-top: $padding;
+        }
+
+        .post:not(:last-child) {
+            margin-bottom: $padding;
+        }
+    }
+
+    .logoutContainer {
+        padding: $padding;
+    }
+}

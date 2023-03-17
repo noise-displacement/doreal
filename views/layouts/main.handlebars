@@ -6,12 +6,19 @@
     <title>Document</title>
   </head>
   <body>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/users/login">Login</a>
-      <a href="/users/register">Register</a>
-    </nav>
-    {{{body}}}
+    <div class="bodyWrapper">
+      <div class="bodyContainer">
+        <nav>
+          <a href="/"><strong data-language-key="doReal">DoReal</strong></a>
+          <a href="/users/login" data-language-key="login">Login</a>
+          <a href="/users/register" data-language-key="register">Register</a>
+        </nav>
+        <div class="contentContainer">
+          {{{body}}}
+        </div>
+      </div>
+    </div>
   </body>
+  <link href="/style.css" rel="stylesheet" />
   <script src="http://localhost:8080/js/main.mjs" type="module"></script>
 </html>

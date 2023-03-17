@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  background: #111;
+  color: #eee;
+  font-family: sans-serif;
+}
+
+a {
+  color: #eee;
+}
+
+.bodyWrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+.bodyWrapper .bodyContainer {
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.bodyWrapper .bodyContainer .contentContainer {
+  box-sizing: border-box;
+}
+.bodyWrapper .bodyContainer button {
+  padding: 0.7em 1.4em;
+  border-radius: 7.5px;
+  border: 0;
+  cursor: pointer;
+  background: #6666ff;
+  color: #eee;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.bodyWrapper .bodyContainer input {
+  padding: 0.7em 1.4em;
+  border-radius: 7.5px;
+  border: 0;
+}
+.bodyWrapper .bodyContainer .sidePadding {
+  padding: 0 15px;
+}
+.bodyWrapper .bodyContainer .topPadding {
+  padding-top: 15px;
+}
+.bodyWrapper .bodyContainer .bg {
+  background: #2b2b2b;
+  border-radius: 7.5px;
+  padding: 15px;
+}
+.bodyWrapper .bodyContainer .form .inputContainer:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+nav {
+  display: flex;
+  background: #2b2b2b;
+  padding: 7.5px;
+  border-radius: 0 0 7.5px 7.5px;
+}
+nav a {
+  padding: 15px;
+  border-radius: 7.5px;
+  text-decoration: none;
+}
+nav a:hover {
+  background: #444444;
+}
+
+main {
+  width: 100%;
+}
+main .welcomeMessage {
+  border-radius: 7.5px;
+}
+main .uploadPostContainer {
+  padding: 0 15px;
+}
+main .postContainer .post {
+  padding: 15px;
+  border-radius: 7.5px;
+  padding: 15px;
+  background: #2b2b2b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main .postContainer .post span:first-child {
+  display: block;
+}
+main .postContainer .post:first-child {
+  margin-top: 15px;
+}
+main .postContainer .post:not(:last-child) {
+  margin-bottom: 15px;
+}
+main .logoutContainer {
+  padding: 15px;
+}/*# sourceMappingURL=style.css.map */

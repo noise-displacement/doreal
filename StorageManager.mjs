@@ -66,11 +66,12 @@ class StorageManager {
         return results;
     }
 
-    async createPost(user, text) {
+    async createPost(user, text, id) {
         let results = null;
 
         const userFormatted = user;
         const textFormatted = text;
+        const idFormatted = id;
 
         try {
             if(textFormatted === null || textFormatted === undefined) {
@@ -78,6 +79,7 @@ class StorageManager {
                 console.log("No text");
             } else {
                 const post = new PostSchema({
+                    id: idFormatted,
                     user: userFormatted, 
                     text: textFormatted
                 });
@@ -99,6 +101,19 @@ class StorageManager {
         try {
             const posts = await PostSchema.find({});
             results = posts;
+        } catch(err) {
+            console.log(err);
+            results = err;
+        }
+
+        return results;
+    }
+
+    async deletePost(id) {
+        let results = null;
+
+        try {
+            results = await PostSchema.deleteOne({id: id});
         } catch(err) {
             console.log(err);
             results = err;

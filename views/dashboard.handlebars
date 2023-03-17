@@ -1,22 +1,50 @@
 <main>
-  <h1>Hello {{user}}</h1>
-    <div class="uploadPostContainer">
-        <label for="postText">Text</label>
-        <input type="text" name="postText" required>
-        <button type="submit" class="submitButton" data-post-url="/post/upload" data-btn-action="sendPost">Upload post</button>
-    </div>
+  <h1 class="welcomeMessage sidePadding"><span
+      data-language-key="welcome"
+    >Welcome back</span>
+    {{user}}</h1>
+  <div class="uploadPostContainer sidePadding">
+    <label for="postText" data-language-key="caption">Caption</label>
+    <input type="text" name="postText" required />
+    <button
+      type="submit"
+      class="submitButton"
+      data-post-url="/post/upload"
+      data-btn-action="sendPost"
+      data-language-key="uploadPost"
+    >Upload post</button>
+  </div>
 
   <div class="postContainer">
+    <h2 class="sidePadding" data-language-key="recentPosts">Recent posts</h2>
     {{#each posts}}
-      {{#each this}}
       <div class="post">
-        <h2>{{user}}</h2>
-        <span>{{text}}</span>
-      </div>
-      {{/each}}
-    {{/each}}
+        <div class="content">
+          <span><strong>{{this.user}}: </strong></span>
+          <span>{{text}}</span>
+        </div>
 
-    <span>End of posts</span><br>
-    <button id="logoutBtn" data-post-url="/users/logout" data-btn-action="logout">Log out</button>
+        <div class="actions topPadding">
+          <button
+            type="submit"
+            class="submitButton"
+            data-post-url="/post/delete"
+            data-btn-action="deletePost"
+            data-context="{{id}}"
+            data-language-key="deletePost"
+          >Delete post</button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="logoutContainer sidePadding topPadding">
+    <span class="bottomPadding" data-language-key="endOfPosts">End of posts</span>
+    <button
+      id="logoutBtn"
+      data-post-url="/users/logout"
+      data-btn-action="logout"
+      data-language-key="logout"
+    >Log out</button>
   </div>
 </main>

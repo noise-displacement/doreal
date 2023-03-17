@@ -1,19 +1,25 @@
 <main>
-  <h1>Login</h1>
+    <h1 class="sidePadding" data-language-key="login">Login</h1>
 
-  <form action="/users/login" method="POST">
-    <div>
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
-    </div>
+    <form action="/users/login" method="POST" class="form topPadding bg">
+      <div class="inputContainer">
+        <label for="email" data-language-key="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
 
-    <div>
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
-    </div>
+      <div class="inputContainer">
+        <label for="password" data-language-key="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
 
-    <button type="submit" class="submitButton" data-post-url="/users/login" data-btn-action="login">Login</button>
-  </form>
+      <button
+        type="submit"
+        class="submitButton"
+        data-post-url="/users/login"
+        data-btn-action="login"
+        data-language-key="login"
+      >Login</button>
+    </form>
 
-  <a href="/users/register">Create user</a>
+    <span class="topPadding sidePadding" data-language-key="noUser">No user?</span><a href="/users/register" data-language-key="createUser">Create user</a>
 </main>
