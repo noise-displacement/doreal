@@ -9,7 +9,7 @@
     <button
       type="submit"
       class="submitButton"
-      data-btn-action="upload"
+      data-btn-action="createPost"
       data-language-key="uploadPost"
     >Upload post</button>
   </div>
@@ -27,14 +27,14 @@
           <button
             type="submit"
             class="actionButton"
-            data-btn-action="edit"
+            data-btn-action="editPost"
             data-context="{{id}}"
             data-language-key="editPost"
           >Edit post</button>
           <button
             type="submit"
             class="actionButton"
-            data-btn-action="delete"
+            data-btn-action="deletePost"
             data-context="{{id}}"
             data-language-key="deletePost"
           >Delete post</button>
@@ -47,8 +47,7 @@
     <span class="bottomPadding" data-language-key="endOfPosts">End of posts</span>
     <button
       id="logoutBtn"
-      data-post-url="/users/logout"
-      data-btn-action="logout"
+      data-btn-action="userLogout"
       data-language-key="logout"
     >Log out</button>
   </div>

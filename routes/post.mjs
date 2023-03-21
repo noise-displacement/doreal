@@ -9,7 +9,7 @@ postRouter.get("/", async (req, res, next) => {
   res.json(posts);
 });
 
-postRouter.post("/upload", async (req, res, next) => {
+postRouter.post("/create", async (req, res, next) => {
   //console.log(req.body.postText);
   const posts = await new StorageManager().retrievePosts();
   const postsLength = posts.length;

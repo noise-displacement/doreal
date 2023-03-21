@@ -1,5 +1,5 @@
 import UI_ELEMENTS from "./uiElements.mjs";
-import { POST_ENDPOINTS } from "./apiEndpoints.mjs";
+import { API_ENDPOINTS } from "./apiEndpoints.mjs";
 
 const navLinks = document.querySelectorAll(UI_ELEMENTS.navLinks);
 const main = document.querySelector(UI_ELEMENTS.main);
@@ -53,7 +53,7 @@ function activateButtons() {
       const context = button.attributes["data-context"]?.value;
       console.log(actionValue);
 
-      const postUrl = POST_ENDPOINTS[actionValue];
+      const postUrl = API_ENDPOINTS[actionValue];
       console.log(postUrl);
 
       const data = {};

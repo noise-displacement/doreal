@@ -5,15 +5,7 @@ import UserSchema from "../models/user.mjs";
 import VIEWS from "../views/view_catalog.mjs";
 import StorageManager from "../StorageManager.mjs";
 
-const crypto = await import('node:crypto');
-
 const userRouter = express.Router();
-const secret = process.env["CRYPTO_SECRET"] || "SECRET";
-const salt = process.env["CRYPTO_SALT"] || "SALT";
-
-const algorithm = 'aes-256-ctr';
-const iv = crypto.randomBytes(16);
-
 
 //get all users
 userRouter.get("/", async (req, res, next) => {

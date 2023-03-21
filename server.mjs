@@ -19,8 +19,9 @@ const app = express();
 app.set("port", process.env.PORT || 8080);
 
 const middleWare = express.Router();
+console.log(process.env.DATABASE_URL);
 
-mongoose.connect(process.env.DATABASE_URL || "mongodb://localhost/users");
+mongoose.connect(process.env.DATABASE_URL);
 const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to database"));

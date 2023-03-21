@@ -3,6 +3,7 @@ import { ExpressHandlebars } from "express-handlebars";
 import StorageManager from "../StorageManager.mjs";
 import VIEWS from "../views/view_catalog.mjs";
 import PostSchema from "../models/post.mjs";
+import UserSchema from "../models/user.mjs";
 
 const dashboardRouter = express.Router();
 
@@ -11,6 +12,7 @@ dashboardRouter.get("/", async (req, res, next) => {
 });
 
 export async function loadDashboard(req, res, next) {
+  console.log("Users", await UserSchema.find({}));
   if (
     req.cookies.loggedInCookie === "false" ||
     req.cookies.loggedInCookie === "undefined" ||

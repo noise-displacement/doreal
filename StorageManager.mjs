@@ -22,6 +22,7 @@ class StorageManager {
     const hashedPassword = createHmac('sha256', password).digest('hex');
 
     const users = await UserSchema.find({ username: username });
+    console.log(users);
 
     try {
       if (users.length !== 0) {
