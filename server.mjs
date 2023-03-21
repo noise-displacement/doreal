@@ -18,6 +18,8 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const app = express();
+app.set("port", process.env.PORT || 8080);
+
 const middleWare = express.Router();
 
 mongoose.connect(process.env.DATABASE_URL);
