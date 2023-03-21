@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv from "dotenv";
+import "dotenv/config";
 import mongoose from "mongoose";
 //import usersRouter from "./routes/user.mjs";
 import userRouter from "./routes/user.mjs";
@@ -13,7 +13,7 @@ import postRouter from "./routes/post.mjs";
 import StorageManager from "./StorageManager.mjs";
 import PostSchema from "./models/post.mjs";
 
-dotenv.config();
+//dotenv.config();
 
 const app = express();
 app.set("port", process.env.PORT || 8080);

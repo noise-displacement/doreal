@@ -1,6 +1,6 @@
 import express from "express";
 import User from "../models/user.mjs";
-import bcrypt from "bcrypt";
+//import bcrypt from "bcrypt";
 import UserSchema from "../models/user.mjs";
 import VIEWS from "../views/view_catalog.mjs";
 import StorageManager from "../StorageManager.mjs";
