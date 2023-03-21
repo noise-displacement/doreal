@@ -13,9 +13,7 @@ import postRouter from "./routes/post.mjs";
 import StorageManager from "./StorageManager.mjs";
 import PostSchema from "./models/post.mjs";
 
-if (process.env.NODE_ENV !== "production") {
-  dotenv.config();
-}
+dotenv.config();
 
 const app = express();
 app.set("port", process.env.PORT || 8080);
