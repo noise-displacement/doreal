@@ -16,7 +16,7 @@ a {
   width: 100%;
   align-items: center;
   box-sizing: border-box;
-  padding: 0 15px;
+  padding: 0 20px;
 }
 .bodyWrapper .bodyContainer {
   max-width: 700px;
@@ -28,44 +28,53 @@ a {
 }
 .bodyWrapper .bodyContainer button {
   padding: 0.7em 1.4em;
-  border-radius: 7.5px;
+  border-radius: 10px;
   border: 0;
   cursor: pointer;
-  background: #6666ff;
+  background-color: #6135f1;
   color: #eee;
   font-weight: bold;
   white-space: nowrap;
+  transition: background-color 0.15s;
+}
+.bodyWrapper .bodyContainer button:hover {
+  background-color: #4e1def;
+}
+.bodyWrapper .bodyContainer label {
+  display: block;
+  margin-bottom: 10px;
 }
 .bodyWrapper .bodyContainer input {
   padding: 0.7em 1.4em;
-  border-radius: 7.5px;
+  border-radius: 10px;
   border: 0;
 }
 .bodyWrapper .bodyContainer .sidePadding {
-  padding: 0 15px;
+  padding: 0 20px;
 }
 .bodyWrapper .bodyContainer .topPadding {
-  padding-top: 15px;
+  padding-top: 20px;
 }
 .bodyWrapper .bodyContainer .bg {
   background: #2b2b2b;
-  border-radius: 7.5px;
-  padding: 15px;
+  border-radius: 10px;
+  padding: 20px;
 }
 .bodyWrapper .bodyContainer .form .inputContainer:not(:last-child) {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 nav {
   display: flex;
   background: #2b2b2b;
-  padding: 7.5px;
-  border-radius: 0 0 7.5px 7.5px;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
 }
 nav a {
-  padding: 15px;
-  border-radius: 7.5px;
+  padding: 20px;
+  border-radius: 10px;
   text-decoration: none;
+  transition: background-color 0.15s;
 }
 nav a:hover {
   background: #444444;
@@ -75,15 +84,15 @@ main {
   width: 100%;
 }
 main .welcomeMessage {
-  border-radius: 7.5px;
+  border-radius: 10px;
 }
 main .uploadPostContainer {
-  padding: 0 15px;
+  padding: 0 20px;
 }
 main .postContainer .post {
-  padding: 15px;
-  border-radius: 7.5px;
-  padding: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  padding: 20px;
   background: #2b2b2b;
   display: flex;
   flex-direction: column;
@@ -92,12 +101,19 @@ main .postContainer .post {
 main .postContainer .post span:first-child {
   display: block;
 }
+main .postContainer .post .actionButton {
+  background-color: #444444;
+}
+main .postContainer .post .actionButton:hover {
+  background-color: #4e1def;
+}
 main .postContainer .post:first-child {
-  margin-top: 15px;
+  margin-top: 20px;
 }
 main .postContainer .post:not(:last-child) {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 main .logoutContainer {
-  padding: 15px;
+  padding: 20px;
+  margin-bottom: 40px;
 }/*# sourceMappingURL=style.css.map */

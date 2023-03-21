@@ -24,6 +24,7 @@ userRouter.get("/", async (req, res, next) => {
 
 //get Login
 userRouter.get("/login", async (req, res, next) => {
+  console.log(await UserSchema.find({}));
   res.render(VIEWS.login.file);
 });
 
@@ -67,6 +68,7 @@ userRouter.post("/register", async (req, res, next) => {
   res.cookie('loggedInCookie', false);
   await new StorageManager().createUser(email, username, password);
   res.cookie("loggedInCookie", username);
+  res.json({ message: "User created" }).end();
 });
 
 userRouter.get("/onRegisterComplete", (req, res, next) => {

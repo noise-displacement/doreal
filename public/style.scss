@@ -1,8 +1,8 @@
-$padding: 15px;
+$padding: 20px;
 
 $mainColor: #111;
 $offsetColor: #eee;
-$accent: lighten(blue, 20%);
+$accent: lighten(#4110e3, 10%);
 
 $br: calc($padding / 2);
 
@@ -40,10 +40,20 @@ a {
             border-radius: $br;
             border: 0;
             cursor: pointer;
-            background: $accent;
+            background-color: $accent;
             color: $offsetColor;
             font-weight: bold;
             white-space: nowrap;
+            transition: background-color .15s;
+        }
+
+        button:hover {
+            background-color: darken($accent, 5%);
+        }
+
+        label {
+            display: block;
+            margin-bottom: calc($padding / 2);
         }
 
         input {
@@ -84,6 +94,7 @@ nav {
         padding: $padding;
         border-radius: $br;
         text-decoration: none;
+        transition: background-color .15s;
     }
 
     a:hover {
@@ -115,6 +126,14 @@ main {
             span:first-child {
                 display: block;
             }
+
+            .actionButton {
+                background-color: lighten($mainColor, 20%);
+            }
+
+            .actionButton:hover {
+                background-color: darken($accent, 5%);
+            }
         }
 
         .post:first-child {
@@ -128,5 +147,6 @@ main {
 
     .logoutContainer {
         padding: $padding;
+        margin-bottom: calc($padding * 2);
     }
 }

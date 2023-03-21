@@ -1,4 +1,5 @@
 import UI_ELEMENTS from "./uiElements.mjs";
+import { POST_ENDPOINTS } from "./apiEndpoints.mjs";
 
 const navLinks = document.querySelectorAll(UI_ELEMENTS.navLinks);
 const main = document.querySelector(UI_ELEMENTS.main);
@@ -48,8 +49,12 @@ function activateButtons() {
       e.preventDefault();
 
       const actionValue = button.attributes["data-btn-action"].value;
-      const postUrl = button.attributes["data-post-url"].value;
+      //Checks if the button has a context attribute, if it does, it will be added to the data object. If not it will be ignored.
       const context = button.attributes["data-context"]?.value;
+      console.log(actionValue);
+
+      const postUrl = POST_ENDPOINTS[actionValue];
+      console.log(postUrl);
 
       const data = {};
 
@@ -58,44 +63,14 @@ function activateButtons() {
         data["context"] = context;
       });
 
-      if (actionValue === "login") {
-        login(postUrl, data);
-      } else if (actionValue === "logout") {
-        logout(postUrl);
-      } else if (actionValue === "register") {
-        register(postUrl, data);
-      } else if (actionValue === "sendPost") {
-        sendPost(postUrl, data);
-      } else if (actionValue === "deletePost") {
-        deletePost(postUrl, data);
-      }
+      postData(postUrl, data, loadView("/"));
     });
   });
 }
 
-function login(btnPostUrl, data) {
-  postData(btnPostUrl, data, loadView("/"));
-}
-
-function logout(btnPostUrl) {
-  postData(btnPostUrl, undefined, loadView("/users/login"));
-}
-
-function register(btnPostUrl, data) {
-  postData(btnPostUrl, data, loadView("/users/onRegisterComplete"));
-}
-
-function sendPost(btnPostUrl, data) {
-  postData(btnPostUrl, data, loadView("/"));
-}
-
-function deletePost(btnPostUrl, data) {
-  postData(btnPostUrl, data, loadView("/"));
-}
-
-async function postData(url = "", data = {}, callback) {
+async function postData(url = "", data = {}, callback, method = "POST") {
   const response = await fetch(url, {
-    method: "POST",
+    method,
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });

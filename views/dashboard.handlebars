@@ -9,8 +9,7 @@
     <button
       type="submit"
       class="submitButton"
-      data-post-url="/post/upload"
-      data-btn-action="sendPost"
+      data-btn-action="upload"
       data-language-key="uploadPost"
     >Upload post</button>
   </div>
@@ -27,9 +26,15 @@
         <div class="actions topPadding">
           <button
             type="submit"
-            class="submitButton"
-            data-post-url="/post/delete"
-            data-btn-action="deletePost"
+            class="actionButton"
+            data-btn-action="edit"
+            data-context="{{id}}"
+            data-language-key="editPost"
+          >Edit post</button>
+          <button
+            type="submit"
+            class="actionButton"
+            data-btn-action="delete"
             data-context="{{id}}"
             data-language-key="deletePost"
           >Delete post</button>
