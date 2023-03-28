@@ -42,7 +42,7 @@ navLinks.forEach((link) => {
 
 function activateButtons() {
   const buttons = document.querySelectorAll(UI_ELEMENTS.button);
-  const inputs = document.querySelectorAll(UI_ELEMENTS.input);;
+  const inputs = document.querySelectorAll(UI_ELEMENTS.input);
 
   buttons.forEach((button) => {
     button.addEventListener("click", (e) => {
@@ -54,21 +54,36 @@ function activateButtons() {
       console.log(actionValue);
 
       const postUrl = API_ENDPOINTS[actionValue];
+      let method = "POST";
+
+      if(actionValue === "deletePost") {
+        method = "DELETE";
+      }
+
+      if(actionValue === "editPost") {
+        method = "PUT";
+      }
+
       console.log(postUrl);
 
       const data = {};
 
       inputs.forEach((input) => {
-        data[input.attributes["name"].value] = input.value;
+        //console.log(input.attributes["name"].value);
+        if(data[input.attributes["name"].value] === undefined || data[input.attributes["name"].value] === null || data[input.attributes["name"].value] === "") {
+          data[input.attributes["name"].value] = input.value;
+        }
+        console.log(data);
         data["context"] = context;
       });
 
-      postData(postUrl, data, loadView("/"));
+      postData(postUrl, data, loadView("/"), method);
     });
   });
 }
 
 async function postData(url = "", data = {}, callback, method = "POST") {
+  console.log(url);
   const response = await fetch(url, {
     method,
     headers: { "Content-Type": "application/json" },

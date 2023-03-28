@@ -1,9 +1,6 @@
 import express from "express";
-import { ExpressHandlebars } from "express-handlebars";
 import StorageManager from "../StorageManager.mjs";
 import VIEWS from "../views/view_catalog.mjs";
-import PostSchema from "../models/post.mjs";
-import UserSchema from "../models/user.mjs";
 
 const dashboardRouter = express.Router();
 
@@ -12,7 +9,10 @@ dashboardRouter.get("/", async (req, res, next) => {
 });
 
 export async function loadDashboard(req, res, next) {
-  console.log("Users", await UserSchema.find({}));
+  //console.log("Users", await UserSchema.find({}));
+  //console.log("Dashboard", await PostSchema.find({}));
+
+  // Looking for an undefined user here is probably bad if the users username is actually "undefined". But the cookie naming sucks anyway so this won't be a problem in prod.
   if (
     req.cookies.loggedInCookie === "false" ||
     req.cookies.loggedInCookie === "undefined" ||
@@ -25,7 +25,7 @@ export async function loadDashboard(req, res, next) {
     chronologicalPosts.map(post => {
         if(post.user === req.cookies.loggedInCookie) {
             //console.log("User", post);
-            post["isCurrentUser"] = true;
+            post["isCurrentUser"] = "true";
         }
         //console.log(post.toJSON());
     });
@@ -34,6 +34,7 @@ export async function loadDashboard(req, res, next) {
 
     const user = req.cookies.loggedInCookie;
     const userPosts = await new StorageManager().retrievePosts(user);
+    console.log(chronologicalPosts);
     
     res.render(VIEWS.dashboard.file, {
       user: user,

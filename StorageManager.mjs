@@ -22,7 +22,7 @@ class StorageManager {
     const hashedPassword = createHmac('sha256', password).digest('hex');
 
     const users = await UserSchema.find({ username: username });
-    console.log(users);
+    //console.log(users);
 
     try {
       if (users.length !== 0) {
@@ -101,17 +101,22 @@ class StorageManager {
     return results;
   }
 
-  async retrievePosts(user) {
+  async retrievePosts(user, id) {
     let results = null;
     //console.log("Retrieve", user);
 
     try {
       const userFormatted = user || undefined;
-      if (userFormatted === undefined) {
-        const posts = await PostSchema.find({});
+      const idFormatted = id || undefined;
+
+      if (userFormatted !== undefined) {
+        const posts = await PostSchema.find({ user: userFormatted });
+        results = posts;
+      } else if(idFormatted !== undefined) {
+        const posts = await PostSchema.find({ id: idFormatted });
         results = posts;
       } else {
-        const posts = await PostSchema.find({ user: userFormatted });
+        const posts = await PostSchema.find({});
         results = posts;
       }
     } catch (err) {

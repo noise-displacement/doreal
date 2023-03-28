@@ -7,6 +7,27 @@ import StorageManager from "../StorageManager.mjs";
 
 const userRouter = express.Router();
 
+function generateAccessToken(username) {
+  return jwt.sign(username, process.env.TOKEN_SECRET, {expires: '1800s'});
+}
+
+export function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+
+  if (token == null) return res.sendStatus(401)
+
+  jwt.verify(token, process.env.TOKEN_SECRET.toString(), (err, user) => {
+    console.log(err);
+
+    if (err) return res.sendStatus(403);
+
+    req.user = user
+
+    next();
+  })
+}
+
 //get all users
 userRouter.get("/", async (req, res, next) => {
   const users = await UserSchema.find();
@@ -16,7 +37,7 @@ userRouter.get("/", async (req, res, next) => {
 
 //get Login
 userRouter.get("/login", async (req, res, next) => {
-  console.log(await UserSchema.find({}));
+  //console.log(await UserSchema.find({}));
   res.render(VIEWS.login.file);
 });
 
@@ -29,7 +50,10 @@ userRouter.post("/login", async (req, res, next) => {
   //req.session.user = user;
   //console.log("Login route: ", req.session.user);
 
-  // Mega dum løsning, men proof of concept for å komme videre i utvikling. Fikk ikke sessions til å fungere. Tenker JWT kanskje er best?
+  //const token = generateAccessToken(user.username);
+  //res.json(token);
+  
+  // Mega dum løsning, men proof of concept for å komme videre i utvikling. Fikk ikke sessions til å fungere. Kanskje JWT ville fungert bedre?
   res.cookie("loggedInCookie", user.username);
   next();
 });
@@ -60,6 +84,10 @@ userRouter.post("/register", async (req, res, next) => {
   res.cookie('loggedInCookie', false);
   await new StorageManager().createUser(email, username, password);
   res.cookie("loggedInCookie", username);
+
+  //const token = generateAccessToken(username);
+  //res.json(token);
+
   res.json({ message: "User created" }).end();
 });
 

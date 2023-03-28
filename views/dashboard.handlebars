@@ -20,7 +20,14 @@
       <div class="post">
         <div class="content">
           <span><strong>{{this.user}}: </strong></span>
-          <span>{{text}}</span>
+          <span>{{this.text}}</span>
+        </div>
+
+        <span>{{this.error}}</span>
+
+        <div class="editBox topPadding">
+          <label for="editPostText">Edit post</label>
+          <input type="text" name="postText" data-context="{{id}}" placeholder="Edit post text" />
         </div>
 
         <div class="actions topPadding">
