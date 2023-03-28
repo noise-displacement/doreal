@@ -1,5 +1,5 @@
 import express from "express";
-import "dotenv/config";
+//import "dotenv/config";
 import mongoose from "mongoose";
 import userRouter from "./routes/user.mjs";
 import { engine } from "express-handlebars";
